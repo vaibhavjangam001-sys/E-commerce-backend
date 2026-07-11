@@ -1,5 +1,8 @@
 import express from "express";
 import healthRouter from "./routes/health.routes.js";
+import notFound from "./middlewares/notFound.middleware.js";
+import errorHandler from "./middlewares/error.middleware.js";
+import usersRouter from "./routes/users.routes.js";
 
 const app = express();
 
@@ -8,6 +11,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 //Routes registration :-
-app.use("/api/v1", healthRouter);
+app.use("/api/v1/health", healthRouter);
+app.use("/api/v1/users",usersRouter);
+app.use(notFound);
+app.use(errorHandler);
 
 export default app;
