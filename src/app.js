@@ -2,7 +2,7 @@ import express from "express";
 import healthRouter from "./routes/health.routes.js";
 import notFound from "./middlewares/notFound.middleware.js";
 import errorHandler from "./middlewares/error.middleware.js";
-import usersRouter from "./routes/users.routes.js";
+import usersRouter from "./routes/user.routes.js";
 
 const app = express();
 

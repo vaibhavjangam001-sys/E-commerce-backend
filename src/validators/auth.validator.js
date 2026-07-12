@@ -1,5 +1,5 @@
 import { body } from "express-validator";
-import { PASSWORD_REGEX } from "../constants/regex.constant.js";
+import { REGEX } from "../constants/index.js";
 
 const validateRegister = () => {
   return [
@@ -27,7 +27,7 @@ const validateRegister = () => {
       .isLength({ min: 8 })
       .withMessage("Password must be at least 8 characters long.")
       .bail()
-      .matches(PASSWORD_REGEX)
+      .matches(REGEX.PASSWORD_REGEX)
       .withMessage(
         "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character",
       ),
