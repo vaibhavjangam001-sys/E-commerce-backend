@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 
 //Routes registration :-
 app.use("/api/v1/health", healthRouter);
-app.use("/api/v1/users",usersRouter);
+app.use("/api/v1/user",usersRouter);
 app.use(notFound);
 app.use(errorHandler);
 

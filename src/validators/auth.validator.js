@@ -8,7 +8,7 @@ const validateRegister = () => {
       .notEmpty()
       .withMessage("Name is required")
       .bail()
-      .isLength({ min: 2, max: 12 })
+      .isLength({ min: 2, max: 30 })
       .withMessage("Name must be at least 2 and 12 characters"),
 
     body("email")
