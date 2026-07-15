@@ -2,6 +2,7 @@ import User from "../models/user.model.js";
 import ApiError from "../utils/ApiError.js";
 import ApiResponse from "../utils/ApiResponse.js";
 import AsyncHandler from "../utils/AsyncHandler.js";
+import { HTTP_STATUS, MESSAGES } from "../constants/index.js";
 
 const cookieOptions = {
   httpOnly: true,
@@ -16,13 +17,13 @@ const loginUser = AsyncHandler(async (req, res) => {
   const user = await User.findOne({ email });
 
   if (!user) {
-    throw new ApiError(401, "Invalid email or password");
+    throw new ApiError(HTTP_STATUS.UNAUTHORIZED, "Invalid email or password");
   }
 
   const isPasswordCorrect = await user.comparePassword(password);
 
   if (!isPasswordCorrect) {
-    throw new ApiError(401, "Invalid email or password");
+    throw new ApiError(HTTP_STATUS.UNAUTHORIZED, "Invalid email or password");
   }
 
   const accessToken = user.generateAccessToken();
@@ -35,7 +36,7 @@ const loginUser = AsyncHandler(async (req, res) => {
     .cookie("accessToken", accessToken, cookieOptions)
     .cookie("refreshToken", refreshToken, cookieOptions)
     .status(200)
-    .json(new ApiResponse(200, "Login successful"));
+    .json(new ApiResponse(HTTP_STATUS.ok, MESSAGES.AUTH.LOGIN_SUCCESS));
 });
 
 export { registerUser, loginUser };
