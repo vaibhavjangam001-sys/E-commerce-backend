@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { ROLES, REGEX } from "../constants";
+import { ROLES, REGEX } from "../constants/index.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import env from "../config/env.config.js";
@@ -51,13 +51,12 @@ const userSchema = new mongoose.Schema(
   { timestamps: true },
 );
 
-userSchema.pre("save", async function (next) {
+userSchema.pre("save", async function () {
   if (!this.isModified("password")) {
-    return next();
+    return;
   }
 
   this.password = await bcrypt.hash(this.password, 10);
-  next();
 });
 
 userSchema.methods.comparePassword = async function (password) {

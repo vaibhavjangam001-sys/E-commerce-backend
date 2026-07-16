@@ -1,9 +1,8 @@
 import { Router } from "express";
-import { checkHealth } from "../controllers/health.controller.js";
-import AsyncHandler from "../utils/AsyncHandler.js";
+import { getServerHealth } from "../controllers/health/index.js";
 
 const healthRouter = Router();
 
-healthRouter.get("/",AsyncHandler(checkHealth));
+healthRouter.get("/", getServerHealth);
 
 export default healthRouter;

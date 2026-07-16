@@ -1,21 +1,53 @@
 import express from "express";
-import healthRouter from "./routes/health.routes.js";
 import notFound from "./middlewares/notFound.middleware.js";
 import errorHandler from "./middlewares/error.middleware.js";
-import usersRouter from "./routes/user.routes.js";
 import cookieParser from "cookie-parser";
+import {
+  // addressRouter,
+  // adminRouter,
+  // brandRouter,
+  // cartRouter,
+  // categoryRouter,
+  // couponRouter,
+  healthRouter,
+  // orderRouter,
+  // paymentRouter,
+  // reviewRouter,
+  // uploadRouter,
+  // userRouter,
+  // wishlistRouter,
+  authRouter
+} from "./routes/index.js";
 
+// create app :- 
 const app = express();
 
-// Global Middlewares
+// Global Middlewares :- 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-//Routes registration :-
+//Routers registration :-
 app.use("/api/v1/health", healthRouter);
-app.use("/api/v1/user",usersRouter);
+// app.use("/api/v1/user", userRouter);
+// app.use("/api/v1/address", addressRouter);
+// app.use("/api/v1/admin", adminRouter);
+app.use("/api/v1/auth", authRouter);
+// app.use("/api/v1/brand", brandRouter);
+// app.use("/api/v1/cart", cartRouter);
+// app.use("/api/v1/category", categoryRouter);
+// app.use("/api/v1/coupon", couponRouter);
+// app.use("/api/v1/order", orderRouter);
+// app.use("/api/v1/payment", paymentRouter);
+// app.use("/api/v1/review", reviewRouter);
+// app.use("/api/v1/upload", uploadRouter);
+// app.use("/api/v1/wishlist", wishlistRouter);
+
+
+// Not routes match middleware :-
 app.use(notFound);
+
+// Error middleware :- 
 app.use(errorHandler);
 
 export default app;

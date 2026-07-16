@@ -1,0 +1,1 @@
+export { default as getServerHealthData } from "./health.service.js";

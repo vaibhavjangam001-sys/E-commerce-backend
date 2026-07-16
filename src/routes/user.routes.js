@@ -1,11 +1,17 @@
-import { Router } from "express";
-import { registerUser } from "../controllers/user.controller.js";
-import { validateRegister } from "../validators/auth.validator.js";
-import validate from "../middlewares/validate.middleware.js";
+// import { Router } from "express";
+// const userRouter = Router();
+
+// // get user profile :- 
+// userRouter.get("/me")
+
+// // update user detailse :- 
+// userRouter.patch("/me");
+
+// // add avatar :- 
+// userRouter.patch("/avatar");
 
 
-const usersRouter = Router();
+// // delete account :- 
+// userRouter.delete("/me");
 
-usersRouter.post("/",validateRegister(),validate,registerUser);
-
-export default usersRouter;
+// export default userRouter;

@@ -1,5 +1,6 @@
 import { body } from "express-validator";
 import { REGEX } from "../constants/index.js";
+import { isEmailAvailable } from "./custom.validator.js";
 
 const validateRegister = () => {
   return [
@@ -17,7 +18,8 @@ const validateRegister = () => {
       .withMessage("Email is required")
       .bail()
       .isEmail()
-      .withMessage("Invalid email"),
+      .withMessage("Invalid email")
+      .custom(isEmailAvailable),
 
     body("password")
       .trim()
