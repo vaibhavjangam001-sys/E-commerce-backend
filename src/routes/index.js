@@ -1,15 +1,9 @@
-export { default as authRouter } from "./auth.routes.js";
-// export { default as productRouter } from "./auth.routes.js";
-// export { default as userRouter } from "./auth.routes.js";
-// export { default as categoryRouter } from "./auth.routes.js";
-// export { default as brandRouter } from "./auth.routes.js";
-// export { default as cartRouter } from "./auth.routes.js";
-// export { default as wishlistRouter } from "./auth.routes.js";
-// export { default as orderRouter } from "./auth.routes.js";
-// export { default as paymentRouter } from "./auth.routes.js";
-// export { default as addressRouter } from "./auth.routes.js";
-// export { default as reviewRouter } from "./auth.routes.js";
-// export { default as couponRouter } from "./auth.routes.js";
-// export { default as uploadRouter } from "./auth.routes.js";
-// export { default as adminRouter } from "./auth.routes.js";
-export { default as healthRouter } from "./health.routes.js";
+import authRouter from "./auth.routes.js";
+import healthRouter from "./health.routes.js";
+
+const routers = {
+    authRouter,
+    healthRouter,
+}
+
+export default routers;

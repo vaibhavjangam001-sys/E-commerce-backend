@@ -1,1 +1,7 @@
-export { default as getServerHealthData } from "./health.service.js";
+import getServerHealthData from "./health.service.js";
+
+const healthService = {
+    getServerHealthData,
+}
+
+export default healthService;

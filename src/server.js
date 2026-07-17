@@ -1,12 +1,11 @@
 import app from "./app.js";
-import env from "./config/env.config.js";
-import connectDB from "./config/database.config.js";
+import configs from "./configs/index.js"
 
 const startServer = async () => {
   try {
-    await connectDB();
+    await configs.connectDB();
 
-    const PORT = env.PORT;
+    const PORT = configs.env.PORT;
 
     app.listen(PORT, () => {
       console.log(`🚀 Server is running on http://localhost:${PORT}`);

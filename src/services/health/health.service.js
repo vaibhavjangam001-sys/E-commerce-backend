@@ -1,7 +1,9 @@
+import configs from "../../configs/index.js"
+
 const getServerHealthData = () => {
   return {
     uptime: process.uptime(),
-    environment: process.env.NODE_ENV,
+    environment: configs.env.NODE_ENV,
     timestamp: new Date().toISOString(),
   };
 };

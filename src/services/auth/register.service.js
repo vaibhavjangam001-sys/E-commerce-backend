@@ -1,20 +1,15 @@
-import User from "../../models/user.model.js";
 import ApiError from "../../utils/ApiError.js";
-import { HTTP_STATUS } from "../../constants/index.js";
+import constants from "../../constants/index.js";
+import authRepository from "../../repositories/auth/index.js";
 
 const register = async ({ name, email, password }) => {
-  const existingUser = await User.findOne({ email });
+  const existingUser = await authRepository.findUserByEmail(email);
 
   if (existingUser) {
-    throw new ApiError(HTTP_STATUS.CONFLICT, "Email already exists");
+    throw new ApiError(constants.HTTP_STATUS.CONFLICT, "Email already exists");
   }
 
-  const user = await User.create({
-    name,
-    email,
-    password,
-  });
-
+  const user = await authRepository.createUser({ name, email, password });
   return user;
 };
 

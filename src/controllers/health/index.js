@@ -1,1 +1,8 @@
-export { default as getServerHealth } from "./health.controller.js";
+import getServerHealth from "./health.controller.js";
+
+const healthController = {
+    getServerHealth,
+}
+
+
+export default healthController;
