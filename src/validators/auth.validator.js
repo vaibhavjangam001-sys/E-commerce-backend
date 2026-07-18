@@ -36,4 +36,16 @@ const validateRegister = () => {
   ];
 };
 
-export { validateRegister };
+const validateLogin = () => {
+  return [
+    body("email")
+      .trim()
+      .notEmpty()
+      .withMessage("Email is required")
+      .bail()
+      .isEmail()
+      .withMessage("Invalid email"),
+  ];
+};
+
+export { validateRegister, validateLogin };

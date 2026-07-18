@@ -1,6 +1,9 @@
 import { Router } from "express";
 import authController from "../controllers/auth/index.js";
-import { validateRegister } from "../validators/auth.validator.js";
+import {
+  validateLogin,
+  validateRegister,
+} from "../validators/auth.validator.js";
 import validate from "../middlewares/validate.middleware.js";
 
 const authRouter = Router();
@@ -13,8 +16,8 @@ authRouter.post(
   authController.registerUser,
 );
 
-// // login :-
-// authRouter.post("/login");
+// login :-
+authRouter.post("/login", validateLogin(), validate, authController.loginUser);
 
 // // refresh Token :-
 // authRouter.post("/refresh-token");
