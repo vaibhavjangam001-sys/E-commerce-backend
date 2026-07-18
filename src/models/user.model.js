@@ -1,9 +1,9 @@
 import mongoose from "mongoose";
-import constants from "../constants/index.js";
+import constant from "../constants/index.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import env from "../configs/env.config.js";
-import configs from "../configs/index.js";
+import config from "../configs/index.js";
 
 const userSchema = new mongoose.Schema(
   {
@@ -21,7 +21,7 @@ const userSchema = new mongoose.Schema(
       trim: true,
       lowercase: true,
       unique: true,
-      match: [constants.REGEX.EMAIL_REGEX, "Please provide a valid email address"],
+      match: [constant.REGEX.EMAIL_REGEX, "Please provide a valid email address"],
     },
 
     password: {
@@ -31,8 +31,8 @@ const userSchema = new mongoose.Schema(
 
     role: {
       type: String,
-      enum: Object.values(constants.ROLES),
-      default: constants.ROLES.CUSTOMER,
+      enum: Object.values(constant.ROLES),
+      default: constant.ROLES.CUSTOMER,
     },
 
     isVerified: {
@@ -70,9 +70,9 @@ userSchema.methods.generateAccessToken = function () {
       id: this._id,
       role: this.role,
     },
-    configs.env.ACCESS_TOKEN_SECRET,
+    config.env.ACCESS_TOKEN_SECRET,
     {
-      expiresIn: configs.env.ACCESS_TOKEN_EXPIRY,
+      expiresIn: config.env.ACCESS_TOKEN_EXPIRY,
     },
   );
 };
@@ -82,9 +82,9 @@ userSchema.methods.generateRefreshToken = function () {
     {
       id: this._id,
     },
-    env.REFRESH_TOKEN_SECRET,
+    config.env.REFRESH_TOKEN_SECRET,
     {
-      expiresIn: configs.env.REFRESH_TOKEN_EXPIRY,
+      expiresIn: config.env.REFRESH_TOKEN_EXPIRY,
     },
   );
 };

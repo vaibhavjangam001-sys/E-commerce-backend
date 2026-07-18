@@ -1,5 +1,5 @@
 import { body } from "express-validator";
-import constants from "../constants/index.js";
+import constant from "../constants/index.js";
 import { isEmailAvailable } from "./custom.validator.js";
 
 const validateRegister = () => {
@@ -29,7 +29,7 @@ const validateRegister = () => {
       .isLength({ min: 8 })
       .withMessage("Password must be at least 8 characters long.")
       .bail()
-      .matches(constants.REGEX.PASSWORD_REGEX)
+      .matches(constant.REGEX.PASSWORD_REGEX)
       .withMessage(
         "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character",
       ),

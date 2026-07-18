@@ -1,8 +1,7 @@
 import express from "express";
-import notFound from "./middlewares/notFound.middleware.js";
-import errorHandler from "./middlewares/error.middleware.js";
 import cookieParser from "cookie-parser";
 import routers from "./routes/index.js";
+import middleware from "./middlewares/index.js";
 
 // create app :- 
 const app = express();
@@ -30,9 +29,9 @@ app.use("/api/v1/auth", routers.authRouter);
 
 
 // Not routes match middleware :-
-app.use(notFound);
+app.use(middleware.notFound);
 
 // Error middleware :- 
-app.use(errorHandler);
+app.use(middleware.errorHandler);
 
 export default app;

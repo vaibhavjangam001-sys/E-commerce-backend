@@ -4,7 +4,7 @@ import { REGEX } from "./regex.constant.js";
 import { ROLES } from "./roles.constant.js";
 
 
-const constants = {
+const constant = {
     HTTP_STATUS,
     MESSAGES,
     REGEX,
@@ -12,4 +12,4 @@ const constants = {
 }
 
 
-export default constants;
+export default constant;
