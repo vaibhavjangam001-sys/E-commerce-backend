@@ -1,11 +1,13 @@
-import register from "./register.service.js"
+import register from "./register.service.js";
 import generateAccessAndRefreshToknes from "./generateAccessAndRefreshTokens.service.js";
 import login from "./login.service.js";
+import refreshToken from "./refreshToken.service.js";
 
 const authService = {
-    register,
-    generateAccessAndRefreshToknes,
-    login,
-}
+  register,
+  generateAccessAndRefreshToknes,
+  login,
+  refreshToken,
+};
 
 export default authService;

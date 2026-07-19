@@ -3,6 +3,7 @@ import AsyncHandler from "../utils/AsyncHandler.js";
 import jwt from "jsonwebtoken";
 import User from "../models/user.model.js";
 import constant from "../constants/index.js";
+import config from "../configs/index.js";
 
 const authenticate = AsyncHandler(async (req, res, next) => {
   const token =
@@ -19,7 +20,7 @@ const authenticate = AsyncHandler(async (req, res, next) => {
   let decoded;
 
   try {
-    decoded = jwt.verify(token, env.ACCESS_TOKEN_SECRET);
+    decoded = jwt.verify(token, config.env.ACCESS_TOKEN_SECRET);
   } catch (error) {
     if (error.name === "TokenExpiredError") {
       throw new ApiError(
@@ -35,7 +36,7 @@ const authenticate = AsyncHandler(async (req, res, next) => {
     throw error;
   }
   const user = await User.findById(decoded.id).select(
-    "-password -refreshToken",
+    "-password",
   );
 
   if (!user) {

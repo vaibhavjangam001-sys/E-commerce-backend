@@ -4,7 +4,7 @@ import {
   validateLogin,
   validateRegister,
 } from "../validators/auth.validator.js";
-import validate from "../middlewares/validate.middleware.js";
+import middleware from "../middlewares/index.js";
 
 const authRouter = Router();
 
@@ -12,15 +12,23 @@ const authRouter = Router();
 authRouter.post(
   "/register",
   validateRegister(),
-  validate,
+  middleware.validate,
   authController.registerUser,
 );
 
 // login :-
-authRouter.post("/login", validateLogin(), validate, authController.loginUser);
+authRouter.post(
+  "/login",
+  validateLogin(),
+  middleware.validate,
+  authController.loginUser,
+);
 
-// // refresh Token :-
-// authRouter.post("/refresh-token");
+// refresh Token :-
+authRouter.post(
+  "/refresh-token",
+  authController.refreshToken,
+);
 
 // // logout :-
 // authRouter.post("/logout");
