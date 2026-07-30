@@ -25,16 +25,17 @@ authRouter.post(
 );
 
 // refresh Token :-
+authRouter.post("/refresh-token", authController.refreshToken);
+
+// logout :-
+authRouter.post("/logout", authController.logoutUser);
+
+// logout all :-
 authRouter.post(
-  "/refresh-token",
-  authController.refreshToken,
+  "/logout-all",
+  middleware.authenticate,
+  authController.logoutAllDevice,
 );
-
-// // logout :-
-// authRouter.post("/logout");
-
-// // logout all :-
-// authRouter.post("/logout-all");
 
 // // forgot password :-
 // authRouter.post("/forgot-password");
